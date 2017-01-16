@@ -1,10 +1,11 @@
 # Homemade
 ## Summary
 ## To Do
-* Test HearstRetriever
+* Tests:
+  * HearstRetriever
+  * DiabeticLivingOnline
 * Get formats for the following sites
   * eatthis.com
-  * diabeticlivingonline.com
   * rachelraymag.com
   * eatingwell.com
   * recipe.com
