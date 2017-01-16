@@ -9,7 +9,7 @@ class DiabeticLivingOnline(ATTRRetriever):
         return 'page-title'
     @classmethod
     def est_time_attr(cls):
-        return 'totalTime'
+        return 'prepTime'
     @classmethod
     def ingredients_attr(cls):
         return 'ingredients'
@@ -22,3 +22,8 @@ class DiabeticLivingOnline(ATTRRetriever):
     def parse_name(cls, bs):
         name = bs.find(attrs={'id':cls.name_attr()}).getText()
         cls.meal.name = name
+
+    @classmethod
+    def parse_est_time(cls, bs):
+        time = bs.find(attrs={'class':cls.name_attr()}).getText()
+        cls.meal.est_time = time
