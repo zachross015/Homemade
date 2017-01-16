@@ -1,5 +1,4 @@
-__all__ = ['allrecipes', 'countryliving', 'kraft']
+__all__ = ['allrecipes', 'kraft']
 # older versions
 from allrecipes import AllRecipes
 from kraft import Kraft
-from countryliving import CountryLiving
