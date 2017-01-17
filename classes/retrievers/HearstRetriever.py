@@ -1,4 +1,5 @@
 from attrretriever import ATTRRetriever
+from classes import Step
 # data retriever for any website under the Hearst Lifestyle and
 # Design Group brand. The sites include :
 # Country Living

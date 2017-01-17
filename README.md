@@ -2,7 +2,6 @@
 ## Summary
 ## To Do
 * Tests:
-  * HearstRetriever
   * DiabeticLivingOnline
 * Get formats for the following sites
   * eatthis.com

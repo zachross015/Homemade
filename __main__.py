@@ -1,3 +1,3 @@
-from websites import Kraft
+from classes.retrievers import HearstRetriever
 
-print(Kraft.retrieve_meal('http://www.kraftrecipes.com/recipes/beer-queso-dip-170719.aspx?cm_sp=09-Jan-17-_-HPH_PANEL_1-_-recipe-170719'))
+print(HearstRetriever.retrieve_meal('http://www.countryliving.com/food-drinks/recipes/a41025/crispy-chicken-thighs-with-smoky-chickpeas/'))
