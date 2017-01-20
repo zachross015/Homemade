@@ -1,17 +1,17 @@
 # Homemade
 ## Summary
 ## To Do
-######Tests:
+### Tests:
 * DiabeticLivingOnline
-######Get formats for the following sites
+### Get formats for the following sites
 * eatthis.com
 * rachelraymag.com
 * eatingwell.com
 * recipe.com
-######ingredient.py:
+### ingredient.py:
 * Write parse Method
   * define parse_quantity
   * define parse_unit
   * define parse_name
-######meal.py:
+### meal.py:
 * Write parse_time method
