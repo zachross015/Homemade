@@ -24,4 +24,16 @@ class Ingredient:
 
     # parses the ingredient from the given string
     def parse(self, in_str):
+        self.parse_quantity(in_str)
+        self.parse_unit(in_str)
+        self.parse_name(in_str)
         self.name = re.sub(r'[^\x00-\x7F]+',' ', in_str)
+
+    def parse_quantity(self, in_str):
+        pass
+
+    def parse_unit(self, in_str):
+        pass
+
+    def parse_name(self, in_str):
+        pass

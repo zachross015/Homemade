@@ -39,11 +39,14 @@ class Meal:
         self.name = re.sub(r'[^\x00-\x7F]+',' ', self.name)
         self.formatted_data += "<name>" + self.name + "</name>"
 
+    def parse_time(self, t):
+        return str(t)
+
     # strips excess white space and then formats it into a default time
     # then appends to the formatted_data
     # NOT FINISHED
     def format_time(self):
-        self.est_time = str(self.est_time)
+        self.est_time = parse_time(self.est_time)
         self.est_time = self.est_time.replace('\n', ' ')    #
         self.est_time = self.est_time.replace('\r', '')     # For getting rid of
         self.est_time = self.est_time.replace('\t', '')     # extra whitespaces
