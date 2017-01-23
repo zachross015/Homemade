@@ -2,10 +2,10 @@ import re
 
 def remove_white_space(str):
     str = re.sub(r'[^\x00-\x7F]+',' ', str)
-    str = str.strip()
     str = str.replace('\n', ' ')
     str = str.replace('\r', '')
     str = str.replace('\t', '')
+    str = str.strip()
     return str
 
 def title(s):

@@ -1,3 +1,3 @@
-from websites import DiabeticLivingOnline
+from websites import AllRecipes
 
-print(DiabeticLivingOnline.retrieve_meal('http://www.diabeticlivingonline.com/recipe/mediterranean-breakfast-sandwiches/'))
+print(AllRecipes.retrieve_meal('http://allrecipes.com/recipe/25016/coconut-macaroon-brownies/'))
