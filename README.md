@@ -9,7 +9,6 @@ changing recipes.
 
 ## To Do
 ### Tests:
-* DiabeticLivingOnline
 
 ### Get formats for the following sites
 * eatthis.com

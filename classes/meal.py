@@ -1,12 +1,6 @@
 from step import Step
 from ingredient import Ingredient
-import re
-
-def title(s):
-    return re.sub(r"[A-Za-z]+('[A-Za-z]+)?",
-            lambda mo: mo.group(0)[0].upper() +
-            mo.group(0)[1:].lower(),
-            s)
+from functions import remove_white_space, title
 
 class Meal:
     # array for holding all of the ingredients to be used
@@ -34,9 +28,8 @@ class Meal:
     # then appends to the formatted_data
     def format_name(self):
         self.name = str(self.name)
-        self.name = self.name.strip()
         self.name = title(self.name)
-        self.name = re.sub(r'[^\x00-\x7F]+',' ', self.name)
+        self.name = remove_white_space(self.name)
         self.formatted_data += "<name>" + self.name + "</name>"
 
     def parse_time(self, t):
@@ -46,11 +39,8 @@ class Meal:
     # then appends to the formatted_data
     # NOT FINISHED
     def format_time(self):
-        self.est_time = parse_time(self.est_time)
-        self.est_time = self.est_time.replace('\n', ' ')    #
-        self.est_time = self.est_time.replace('\r', '')     # For getting rid of
-        self.est_time = self.est_time.replace('\t', '')     # extra whitespaces
-        self.est_time = self.est_time.strip()               #
+        self.est_time = self.parse_time(self.est_time)
+        self.est_time = remove_white_space(self.est_time)
         self.formatted_data += "<est_time>" + self.est_time + "</est_time>"
 
     # formats all of the ingredients by calling their format function

@@ -1,4 +1,4 @@
-from attrretriever import ATTRRetriever
+from classes.retrievers import ATTRRetriever
 # data retriever for diabeticlivingonline
 class DiabeticLivingOnline(ATTRRetriever):
     @classmethod
@@ -25,5 +25,5 @@ class DiabeticLivingOnline(ATTRRetriever):
 
     @classmethod
     def parse_est_time(cls, bs):
-        time = bs.find(attrs={'class':cls.name_attr()}).getText()
+        time = bs.find(attrs={'class':cls.est_time_attr()}).getText()
         cls.meal.est_time = time

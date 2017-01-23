@@ -1,5 +1,5 @@
 from unit import Unit
-import re
+from functions import remove_white_space
 
 class Ingredient:
     # amount of ingredient to use
@@ -27,7 +27,7 @@ class Ingredient:
         self.parse_quantity(in_str)
         self.parse_unit(in_str)
         self.parse_name(in_str)
-        self.name = re.sub(r'[^\x00-\x7F]+',' ', in_str)
+        self.name = remove_white_space(in_str)
 
     def parse_quantity(self, in_str):
         pass
