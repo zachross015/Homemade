@@ -1,3 +1,4 @@
-from websites import AllRecipes
+from websites import DiabeticLivingOnline
+from classes import Unit
 
-print(AllRecipes.retrieve_meal('http://allrecipes.com/recipe/25016/coconut-macaroon-brownies/'))
+print(DiabeticLivingOnline.retrieve_meal('http://www.diabeticlivingonline.com/recipe/mediterranean-breakfast-sandwiches/'))

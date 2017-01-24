@@ -71,8 +71,8 @@ class Unit(Enum):
             'oz.':          12,
             'ounce':        12,
             'ounces':       12,
-            'mg'            13,
-            'mg.'           13,
+            'mg':           13,
+            'mg.':          13,
             'milligram':    13,
             'milligrams':   13,
             'g':            14,
@@ -84,3 +84,8 @@ class Unit(Enum):
             'kilogram':     15,
             'kilograms':    15,
         }
+        if vals.get(str) != None:
+            value = vals[str]
+        else:
+            value = 0
+        return Unit(value)
