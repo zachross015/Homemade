@@ -29,7 +29,6 @@ class Ingredient:
         self.__parse_quantity(tokens)
         self.__parse_unit(tokens)
         self.__parse_name(tokens)
-        self.name = in_str
 
     # parse the quantity by checking sequential values until the value is no
     # longer a number
@@ -48,7 +47,7 @@ class Ingredient:
                 i += 1
             else:
                 break
-        tokens = tokens[i:]
+        del tokens[:i]
         self.quantity = value
 
 
@@ -56,4 +55,4 @@ class Ingredient:
         pass
 
     def __parse_name(self, tokens):
-        pass
+        self.name = ' '.join(tokens)

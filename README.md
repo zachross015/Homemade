@@ -18,6 +18,5 @@ changing recipes.
 
 ### ingredient.py:
 * Write parse Method
-  * define parse_quantity
   * define parse_unit
   * define parse_name
