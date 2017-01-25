@@ -12,7 +12,7 @@ class Ingredient:
     optional = False
 
     def __init__(self, str):
-        self.parse(str)
+        self.__parse(str)
 
     # formats the ingredient into XML
     def format(self):
@@ -23,17 +23,37 @@ class Ingredient:
         return "<ingredient>" + q + u + n + o + "</ingredient>"
 
     # parses the ingredient from the given string
-    def parse(self, in_str):
-        self.parse_quantity(in_str)
-        self.parse_unit(in_str)
-        self.parse_name(in_str)
-        self.name = remove_white_space(in_str)
+    def __parse(self, in_str):
+        in_str = remove_white_space(in_str)
+        tokens = in_str.split()
+        self.__parse_quantity(tokens)
+        self.__parse_unit(tokens)
+        self.__parse_name(tokens)
+        self.name = in_str
 
-    def parse_quantity(self, in_str):
+    # parse the quantity by checking sequential values until the value is no
+    # longer a number
+    def __parse_quantity(self, tokens):
+        i = 0
+        value = ''
+        while i < len(tokens):
+            if tokens[i].isnumeric():      #  check if value is number
+                value += tokens[i]
+                i += 1
+            elif tokens[i].find('/') != -1:   #  check if value is fraction
+                #fraction tokens
+                f_tokens = tokens[i].split('/')
+                if len(f_tokens) > 1 and f_tokens[0].isnumeric() and f_tokens[1].isnumeric:
+                    value += f_tokens[0] + '/' + f_tokens[1]
+                i += 1
+            else:
+                break
+        tokens = tokens[i:]
+        self.quantity = value
+
+
+    def __parse_unit(self, tokens):
         pass
 
-    def parse_unit(self, in_str):
-        pass
-
-    def parse_name(self, in_str):
+    def __parse_name(self, tokens):
         pass

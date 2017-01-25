@@ -5,7 +5,7 @@ def remove_white_space(str):
     str = str.replace('\n', ' ')
     str = str.replace('\r', '')
     str = str.replace('\t', '')
-    str = str.strip()
+    str = ' '.join(str.split())
     return str
 
 def title(s):

@@ -17,6 +17,9 @@ class Unit(Enum):
     MG      = 13      # Milligram
     G       = 14      # Gram
     KG      = 15      # Kilogram
+    SMALL   = 16      # Small Size
+    MEDIUM  = 17      # Medium Size
+    LARGE   = 18      # Large Size
 
     @classmethod
     def get_unit(cls, str):
@@ -83,6 +86,9 @@ class Unit(Enum):
             'kg.':          15,
             'kilogram':     15,
             'kilograms':    15,
+            'small':        16,
+            'medium':       17,
+            'large':        18
         }
         if vals.get(str) != None:
             value = vals[str]

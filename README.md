@@ -21,6 +21,3 @@ changing recipes.
   * define parse_quantity
   * define parse_unit
   * define parse_name
-
-### meal.py:
-* Write parse_time method
