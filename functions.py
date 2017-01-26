@@ -1,5 +1,4 @@
 import re
-
 def remove_white_space(str):
     str = re.sub(r'[^\x00-\x7F]+',' ', str)
     str = str.replace('\n', ' ')

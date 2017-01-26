@@ -55,6 +55,8 @@ class Ingredient:
         if len(tokens) <= 1:
             self.unit = Unit.NONE
         else:
+            if tokens[0] == '-':
+                del tokens[:1]
             unit = Unit.get_unit(tokens[0])
             if unit != Unit.NONE:
                 self.unit = unit
