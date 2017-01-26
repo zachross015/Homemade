@@ -17,7 +17,7 @@ class Ingredient:
     # formats the ingredient into XML
     def format(self):
         q = "<quantity>" + str(self.quantity) + "</quantity>"
-        u = "<unit>"  + str(self.unit) + "</unit>"
+        u = "<unit>"  + str(self.unit.name) + "</unit>"
         n = "<name>"  + str(self.name) + "</name>"
         o = "<optional>"  + str(self.optional) + "</optional>"
         return "<ingredient>" + q + u + n + o + "</ingredient>"
@@ -52,7 +52,21 @@ class Ingredient:
 
 
     def __parse_unit(self, tokens):
-        pass
+        if len(tokens) == 1:
+            self.unit = Unit.NONE
+        else:
+            unit = Unit.get_unit(tokens[0])
+            if unit != Unit.NONE:
+                self.unit = unit
+                del tokens[:1]
+            else:
+                unit = Unit.get_unit(tokens[0] + ' ' + tokens[1])
+                if unit!= Unit.NONE:
+                    self.unit = unit
+                    del tokens[:2]
+                else:
+                    self.unit = Unit.NONE
+
 
     def __parse_name(self, tokens):
         self.name = ' '.join(tokens)

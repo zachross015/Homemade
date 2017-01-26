@@ -15,8 +15,3 @@ changing recipes.
 * rachelraymag.com
 * eatingwell.com
 * recipe.com
-
-### ingredient.py:
-* Write parse Method
-  * define parse_unit
-  * define parse_name
