@@ -15,3 +15,6 @@ changing recipes.
 * rachelraymag.com
 * eatingwell.com
 * recipe.com
+
+### Decider
+* Function that decides which parser to use for retrieving web data

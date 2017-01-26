@@ -52,7 +52,7 @@ class Ingredient:
 
 
     def __parse_unit(self, tokens):
-        if len(tokens) == 1:
+        if len(tokens) <= 1:
             self.unit = Unit.NONE
         else:
             unit = Unit.get_unit(tokens[0])
