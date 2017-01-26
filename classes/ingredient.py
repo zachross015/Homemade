@@ -1,5 +1,5 @@
 from unit import Unit
-from functions import remove_white_space
+from functions import remove_white_space, title
 
 class Ingredient:
     # amount of ingredient to use
@@ -18,7 +18,7 @@ class Ingredient:
     def format(self):
         q = "<quantity>" + str(self.quantity) + "</quantity>"
         u = "<unit>"  + str(self.unit.name) + "</unit>"
-        n = "<name>"  + str(self.name) + "</name>"
+        n = "<name>"  + title(str(self.name)) + "</name>"
         o = "<optional>"  + str(self.optional) + "</optional>"
         return "<ingredient>" + q + u + n + o + "</ingredient>"
 

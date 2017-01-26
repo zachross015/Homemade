@@ -11,9 +11,8 @@ class Kraft(DataRetriever):
     # retrieve the estimated amount of time to make the meal
     @classmethod
     def parse_est_time(cls, bs):
-        minute = bs.find(attrs={'class':'minute'}).getText()
-        hour = bs.find(attrs={'class':'hour'}).getText()
-        cls.meal.est_time = hour + ' ' + minute
+        time = bs.find(attrs={'itemprop':'cookTime'}).getText(separator=u' ')
+        cls.meal.est_time = time
 
     # retrieve the ingredients
     @classmethod

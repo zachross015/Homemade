@@ -1,4 +1,4 @@
-from websites import AllRecipes
+from websites import Kraft
 from classes import Unit
 
-print(AllRecipes.retrieve_meal('http://allrecipes.com/recipe/240785/baked-jalapeno-poppers/'))
+print(Kraft.retrieve_meal('http://www.kraftrecipes.com/recipes/baked-salmon-veggies-57018.aspx'))
