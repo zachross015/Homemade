@@ -11,10 +11,47 @@ changing recipes.
 ### Tests:
 
 ### Get formats for the following sites
-* eatthis.com
-* rachelraymag.com
+* ahappyfooddance.com
+* beginwithnutrition.com
+* chelseasmessyapron.com
+* cremedelacrumb.com
+* dashingdance.com
+* deliciouslyyum.com
 * eatingwell.com
+* eatyourselfskinny.com
+* emilieeats.com
+* familygonehealthy.com
+* fitfoodiefinds.com
+* foodiecrush.com
+* forealslife.com
+* healthyhappylife.com
+* hotforfoodblog.com
+* howsweeteats.com
+* jeanetteshealthyliving.com
+* juliasalbum.com
+* littlebitsof.com
+* loveandlemons.com
+* mydarlingvegan.com
+* peasandcrayons.com
+* pinchofyum.com
+* ohmyveggies.com
+* rachelraymag.com
 * recipe.com
+* recipeforperfection.com
+* runningtothekitchen.com
+* shelikesfood.com
+* skinnytaste.com
+* sweetphi.com
+* tastesbetterfromsratch.com
+* tasteandtellblog.com
+* thebrookluncook.com
+* thecalmingkitchen.com
+* theorganicdietition.com
+* tohercore.com
+* vegukate.com
+* wellplated.com
+* wholeandheavenlyoven.com
+* yummyhealthyeasy.com
 
-### Decider
-* Function that decides which parser to use for retrieving web data
+### Errors
+* Error functions for parsing ingredients

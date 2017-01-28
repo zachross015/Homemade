@@ -1,19 +1,22 @@
-import websites
-import classes.retrievers
+from websites import *
+from retrievers import HearstRetriever
+import traceback
 from urlparse import urlparse
 
-
 web_addresses = {
-    'www.kraftrecipes.com'          : websites.Kraft(),
-    'www.allrecipes.com'            : websites.AllRecipes(),
-    'www.diabeticlivingonline.com'  : websites.DiabeticLivingOnline(),
-    'www.countryliving.com'         : classes.retrievers.HearstRetriever(),
-    'www.delish.com'                : classes.retrievers.HearstRetriever()
+    'www.allrecipes.com'            : AllRecipes(),
+    'www.countryliving.com'         : HearstRetriever(),
+    'www.delish.com'                : HearstRetriever(),
+    'www.diabeticlivingonline.com'  : DiabeticLivingOnline(),
+    'www.kraftrecipes.com'          : Kraft(),
 
 }
 
 def retrieve_meal(url):
     parsed_uri = urlparse(url)
     domain = '{uri.netloc}'.format(uri=parsed_uri)
-    retriever = web_addresses[domain]
-    return retriever.retrieve_meal(url)
+    try:
+        r = web_addresses[domain]
+        return r.retrieve_meal(url)
+    except KeyError as error:
+        return 'N/A'
