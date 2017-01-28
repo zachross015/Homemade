@@ -120,11 +120,11 @@ class Ingredient:
 
     # formats the ingredient into XML
     def format(self):
-        q = "<quantity>" + str(self.quantity) + "</quantity>"
-        u = "<unit>"  + str(self.unit.name) + "</unit>"
-        n = "<name>"  + title(str(self.name)) + "</name>"
-        o = "<optional>"  + str(self.optional) + "</optional>"
-        return "<ingredient>" + q + u + n + o + "</ingredient>"
+        q = "\"quantity\":" + str(self.quantity) + ","
+        u = "\"unit\":\""  + str(self.unit.name) + "\","
+        n = "\"name\":\""  + title(str(self.name)) + "\","
+        o = "\"optional\":\""  + str(self.optional) + "\""
+        return "{" + q + u + n + o + "}"
 
     # parses the ingredient from the given string
     def __parse(self, in_str):
@@ -196,7 +196,7 @@ class Step:
         self.description = self.description.replace('\r', '')     # For getting rid of
         self.description = self.description.replace('\t', '')     # extra whitespaces
         self.description = self.description.strip()
-        return "<step>" + self.description + "</step>"
+        return "\"" + self.description + "\""
 
 '''
 Meal:
@@ -216,12 +216,12 @@ class Meal:
 
     # formats all parts of the xml and then puts them together
     def format(self):
-        self.formatted_data = "<meal>"
+        self.formatted_data = "{"
         self.__format_name()
         self.__format_time()
         self.__format_ingredients()
         self.__format_steps()
-        self.formatted_data += "</meal>"
+        self.formatted_data += "}"
         return self.formatted_data
 
     # strips the name of excess white space and then makes every word capitalized
@@ -230,7 +230,7 @@ class Meal:
         self.name = str(self.name)
         self.name = title(self.name)
         self.name = remove_white_space(self.name)
-        self.formatted_data += "<name>" + self.name + "</name>"
+        self.formatted_data += "\"name\":\"" + self.name + "\","
 
     # strips excess white space and then formats it into a default time
     # then appends to the formatted_data
@@ -238,23 +238,31 @@ class Meal:
     def __format_time(self):
         self.est_time = remove_white_space(self.est_time)
         self.est_time = self.__parse_time(self.est_time)
-        self.formatted_data += "<est_time>" + self.est_time + "</est_time>"
+        self.formatted_data += "\"est_time\":{" + self.est_time + "},"
 
     # formats all of the ingredients by calling their format function
     # then appends to the formatted_data
     def __format_ingredients(self):
-        self.formatted_data += "<ingredients>"
+        self.formatted_data += "\"ingredients\":["
+        first = True
         for ingred in self.ingredients:
+            if not first:
+                self.formatted_data += ','
             self.formatted_data += ingred.format()
-        self.formatted_data += "</ingredients>"
+            first = False
+        self.formatted_data += "],"
 
     # formats all of the steps by calling their format function
     # then appends to the formatted_data
     def __format_steps(self):
-        self.formatted_data += "<steps>"
+        self.formatted_data += "\"steps\":["
+        first = True
         for step in self.steps:
+            if not first:
+                self.formatted_data += ','
             self.formatted_data += step.format()
-        self.formatted_data += "</steps>"
+            first = False
+        self.formatted_data += "]"
 
     def __parse_time(self, t):
         t = str(t)
@@ -275,9 +283,9 @@ class Meal:
                 hour = tokens[i]
             elif tokens[i+1][0] == 'm':
                 minute = tokens[i]
-        return "<hour>" + str(hour) + "</hour><minute>" + str(minute) + "</minute>"
+        return "\"hour\":" + str(hour) + ",\"minute\":" + str(minute)
 
     # time parser for hour:min (clock) formats
     def __p_t_clock(self, tokens):
         tokens = tokens[0].split(':')
-        return "<hour>" + str(tokens[0]) + "</hour><minute>" + str(tokens[1]) + "</minute>"
+        return "\"hour\":" + str(tokens[0]) + ",\"minute\":" + str(tokens[1])
