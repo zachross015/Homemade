@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 from bs4 import BeautifulSoup
 from meal import Meal, Ingredient, Step
 from multiprocessing import Process
-import urllib2
+import urllib
 
 '''
 DataRetriever:
@@ -10,9 +10,7 @@ This class is abstract, so that each instance of the
 class will be able to handle retrieval on its own. It provides a base for
 objects to build off of
 '''
-class DataRetriever:
-    # declare the class as abstract since python 2.7 is used
-    __metaclass__ = ABCMeta
+class DataRetriever(metaclass=ABCMeta):
     # meal for data to be added to
     meal = Meal()
 
@@ -56,8 +54,7 @@ ATTRRetriever:
 Data retriever base class for sites that use attributes as a method of
 storing and showing the data needed to obtain
 '''
-class ATTRRetriever(DataRetriever):
-    __metaclass__ = ABCMeta
+class ATTRRetriever(DataRetriever, metaclass=ABCMeta):
     # type of attribute used (i.e. class, id, itemprop, etc.)
     @classmethod
     @abstractmethod

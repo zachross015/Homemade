@@ -1,14 +1,14 @@
 from websites import *
 from retrievers import HearstRetriever
 import traceback
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 web_addresses = {
-    'www.allrecipes.com'            : AllRecipes(),
-    'www.countryliving.com'         : HearstRetriever(),
-    'www.delish.com'                : HearstRetriever(),
-    'www.diabeticlivingonline.com'  : DiabeticLivingOnline(),
-    'www.kraftrecipes.com'          : Kraft(),
+    'allrecipes.com'            : AllRecipes(),
+    'countryliving.com'         : HearstRetriever(),
+    'delish.com'                : HearstRetriever(),
+    'diabeticlivingonline.com'  : DiabeticLivingOnline(),
+    'kraftrecipes.com'          : Kraft(),
 
 }
 
@@ -19,4 +19,8 @@ def retrieve_meal(url):
         r = web_addresses[domain]
         return r.retrieve_meal(url)
     except KeyError as error:
-        return 'N/A'
+        try:
+            r = web_addresses["www."+domain]
+            return r.retrieve_meal(url)
+        except KeyError as error:
+            return 'N/A'
