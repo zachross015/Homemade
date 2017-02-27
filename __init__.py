@@ -1,7 +1,2 @@
-__all__ = [
-    'functions',
-    'retrievemeal',
-    'websites',
-    'retrievers',
-    'meal'
-]
+import os, sys
+sys.path.insert(0,os.getcwd())

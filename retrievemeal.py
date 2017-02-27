@@ -1,5 +1,8 @@
-from websites import *
-from retrievers import HearstRetriever
+import sys, os
+sys.path.insert(0, os.path.abspath(os.path.join(os.getcwd(),os.pardir)))
+
+from hm.websites import *
+from hm.retrievers import HearstRetriever
 import traceback
 from urllib.parse import urlparse
 

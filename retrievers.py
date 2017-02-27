@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from bs4 import BeautifulSoup
-from meal import Meal, Ingredient, Step
+from hm.meal import Meal, Ingredient, Step
 from multiprocessing import Process
 import urllib.request
 
