@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 from bs4 import BeautifulSoup
 from meal import Meal, Ingredient, Step
 from multiprocessing import Process
-import urllib
+import urllib.request
 
 '''
 DataRetriever:
@@ -17,7 +17,7 @@ class DataRetriever(metaclass=ABCMeta):
     # retrieve the data from the website
     @classmethod
     def retrieve_meal(cls, wa):
-        response = urllib2.urlopen(wa)
+        response = urllib.request.urlopen(wa)
         bs = BeautifulSoup(response.read(), 'html.parser')
         cls.parse_name(bs)
         cls.parse_est_time(bs)

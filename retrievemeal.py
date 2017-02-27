@@ -15,12 +15,13 @@ web_addresses = {
 def retrieve_meal(url):
     parsed_uri = urlparse(url)
     domain = '{uri.netloc}'.format(uri=parsed_uri)
+    print(parsed_uri)
     try:
         r = web_addresses[domain]
         return r.retrieve_meal(url)
     except KeyError as error:
         try:
-            r = web_addresses["www."+domain]
+            r = web_addresses['www.'+domain]
             return r.retrieve_meal(url)
         except KeyError as error:
-            return 'N/A'
+            return 'There is either a web address, or the domain has not been added yet.'
