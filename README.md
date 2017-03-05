@@ -52,6 +52,3 @@ changing recipes.
 * wellplated.com
 * wholeandheavenlyoven.com
 * yummyhealthyeasy.com
-
-### Errors
-* Error functions for parsing ingredients
