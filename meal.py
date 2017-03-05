@@ -227,42 +227,46 @@ class Meal:
     # strips the name of excess white space and then makes every word capitalized
     # then appends to the formatted_data
     def __format_name(self):
-        self.name = str(self.name)
-        self.name = title(self.name)
-        self.name = remove_white_space(self.name)
-        self.formatted_data += "\"name\":\"" + self.name + "\","
+        if self.name != 'N/A':
+            self.name = str(self.name)
+            self.name = title(self.name)
+            self.name = remove_white_space(self.name)
+            self.formatted_data += "\"name\":\"" + self.name + "\","
 
     # strips excess white space and then formats it into a default time
     # then appends to the formatted_data
     # NOT FINISHED
     def __format_time(self):
-        self.est_time = remove_white_space(self.est_time)
-        self.est_time = self.__parse_time(self.est_time)
-        self.formatted_data += "\"est_time\":{" + self.est_time + "},"
+        if self.est_time != 'N/A':
+            self.est_time = remove_white_space(self.est_time)
+            self.est_time = self.__parse_time(self.est_time)
+            self.formatted_data += "\"est_time\":{" + self.est_time + "},"
 
     # formats all of the ingredients by calling their format function
     # then appends to the formatted_data
     def __format_ingredients(self):
-        self.formatted_data += "\"ingredients\":["
-        first = True
-        for ingred in self.ingredients:
-            if not first:
-                self.formatted_data += ','
-            self.formatted_data += ingred.format()
-            first = False
-        self.formatted_data += "],"
+        if self.ingredients != 'N/A':
+            self.formatted_data += "\"ingredients\":["
+            first = True
+            for ingred in self.ingredients:
+                if not first:
+                    self.formatted_data += ','
+                self.formatted_data += ingred.format()
+                first = False
+            self.formatted_data += "],"
 
     # formats all of the steps by calling their format function
     # then appends to the formatted_data
     def __format_steps(self):
-        self.formatted_data += "\"steps\":["
-        first = True
-        for step in self.steps:
-            if not first:
-                self.formatted_data += ','
-            self.formatted_data += step.format()
-            first = False
-        self.formatted_data += "]"
+        if self.steps != 'N/A':
+            self.formatted_data += "\"steps\":["
+            first = True
+            for step in self.steps:
+                if not first:
+                    self.formatted_data += ','
+                self.formatted_data += step.format()
+                first = False
+            self.formatted_data += "]"
 
     def __parse_time(self, t):
         t = str(t)

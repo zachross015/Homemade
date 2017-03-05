@@ -24,10 +24,22 @@ class DataRetriever(metaclass=ABCMeta):
     def retrieve_meal(cls, wa):
         response = urllib.request.urlopen(wa)
         bs = BeautifulSoup(response.read(), 'html.parser')
-        cls.parse_name(bs)
-        cls.parse_est_time(bs)
-        cls.parse_ingredients(bs)
-        cls.parse_steps(bs)
+        try:
+            cls.parse_name(bs)
+        except AttributeError as error:
+            cls.meal.name = unavailable
+        try:
+            cls.parse_est_time(bs)
+        except AttributeError as error:
+            cls.meal.est_time = unavailable
+        try:
+            cls.parse_ingredients(bs)
+        except AttributeError as error:
+            cls.meal.ingredients = unavailable
+        try:
+            cls.parse_steps(bs)
+        except AttributeError as error:
+            cls.meal.steps = unavailable
         return cls.meal.format()
 
     # retrieve the name of the website
@@ -90,42 +102,30 @@ class ATTRRetriever(DataRetriever, metaclass=ABCMeta):
     # retrieve the name of the website
     @classmethod
     def parse_name(cls, bs):
-        try:
-            name = bs.find(attrs={cls.attr_type(): cls.name_attr()}).getText()
-            cls.meal.name = name
-        except AttributeError as error:
-            cls.meal.name = unavailable 
+        name = bs.find(attrs={cls.attr_type(): cls.name_attr()}).getText()
+        cls.meal.name = name
 
     # retrieve the estimated amount of time to make the meal
     @classmethod
     def parse_est_time(cls, bs):
-        try:
-            time = bs.find(attrs={cls.attr_type(): cls.est_time_attr()}).getText()
-            cls.meal.est_time = time
-        except AttributeError as error:
-            cls.meal.est_time = unavailable 
+        time = bs.find(attrs={cls.attr_type(): cls.est_time_attr()}).getText()
+        cls.meal.est_time = time
 
     # retrieve the ingredients
     @classmethod
     def parse_ingredients(cls, bs):
         ingreds = bs.findAll(attrs={cls.attr_type():cls.ingredients_attr()})
         for item in ingreds:
-            try:
-                ingredient = Ingredient(item.getText())
-                cls.meal.ingredients.append(ingredient)
-            except AttributeError as error:
-                cls.meal.ingredients.append(unavailable)
+            ingredient = Ingredient(item.getText())
+            cls.meal.ingredients.append(ingredient)
 
     # retrieve the steps
     @classmethod
     def parse_steps(cls, bs):
         steps = bs.findAll(attrs={cls.attr_type():cls.steps_attr()})
         for step in steps:
-            try:
-                s = Step(step.getText())
-                cls.meal.steps.append(s)
-            except AttributeError as error:
-                cls.meal.steps.append(unavailable)
+            s = Step(step.getText())
+            cls.meal.steps.append(s)
 
 '''
 HearstRetriever:
