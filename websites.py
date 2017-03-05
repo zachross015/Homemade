@@ -1,5 +1,5 @@
-from retrievers import DataRetriever, ATTRRetriever
-from meal import Ingredient, Step
+from .retrievers import DataRetriever, ATTRRetriever
+from .meal import Ingredient, Step
 
 '''
 AllRecipes:

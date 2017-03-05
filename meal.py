@@ -1,5 +1,5 @@
 from enum import Enum
-from functions import remove_white_space, title
+from .functions import remove_white_space, title
 
 '''
 Unit:

@@ -1,5 +1,5 @@
-from websites import *
-from retrievers import HearstRetriever
+from .websites import *
+from .retrievers import HearstRetriever
 import traceback
 from urllib.parse import urlparse
 
