@@ -5,6 +5,11 @@ from multiprocessing import Process
 import urllib.request
 
 '''
+String to inform people that a section of data is unavailable
+'''
+unavailable = 'N/A'
+
+'''
 DataRetriever:
 This class is abstract, so that each instance of the
 class will be able to handle retrieval on its own. It provides a base for
@@ -85,30 +90,42 @@ class ATTRRetriever(DataRetriever, metaclass=ABCMeta):
     # retrieve the name of the website
     @classmethod
     def parse_name(cls, bs):
-        name = bs.find(attrs={cls.attr_type(): cls.name_attr()}).getText()
-        cls.meal.name = name
+        try:
+            name = bs.find(attrs={cls.attr_type(): cls.name_attr()}).getText()
+            cls.meal.name = name
+        except AttributeError as error:
+            cls.meal.name = unavailable 
 
     # retrieve the estimated amount of time to make the meal
     @classmethod
     def parse_est_time(cls, bs):
-        time = bs.find(attrs={cls.attr_type(): cls.est_time_attr()}).getText()
-        cls.meal.est_time = time
+        try:
+            time = bs.find(attrs={cls.attr_type(): cls.est_time_attr()}).getText()
+            cls.meal.est_time = time
+        except AttributeError as error:
+            cls.meal.est_time = unavailable 
 
     # retrieve the ingredients
     @classmethod
     def parse_ingredients(cls, bs):
         ingreds = bs.findAll(attrs={cls.attr_type():cls.ingredients_attr()})
         for item in ingreds:
-            ingredient = Ingredient(item.getText())
-            cls.meal.ingredients.append(ingredient)
+            try:
+                ingredient = Ingredient(item.getText())
+                cls.meal.ingredients.append(ingredient)
+            except AttributeError as error:
+                cls.meal.ingredients.append(unavailable)
 
     # retrieve the steps
     @classmethod
     def parse_steps(cls, bs):
         steps = bs.findAll(attrs={cls.attr_type():cls.steps_attr()})
         for step in steps:
-            s = Step(step.getText())
-            cls.meal.steps.append(s)
+            try:
+                s = Step(step.getText())
+                cls.meal.steps.append(s)
+            except AttributeError as error:
+                cls.meal.steps.append(unavailable)
 
 '''
 HearstRetriever:
